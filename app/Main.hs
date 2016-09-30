@@ -1,6 +1,8 @@
 module Main where
 
+import Data.Foldable
 import Network.HTTP.Simple
+import Data.String.Conversions (cs)
 
 import Lib
 import Yesod
@@ -13,12 +15,14 @@ mkYesod "Piggies" [parseRoutes|
   / HomeR GET
 |]
 
-getHomeR =
-  let fun = "hi"::String in
+getHomeR = do
+  b <- httpLBS "http://example.com"
+  let c = (cs $ fold b) :: String
+
   defaultLayout $ do
     setTitle "Minimal Multifile"
     [whamlet|
-      #{fun},
+      #{c},
       Welcome to the Pigsty!
     |]
 

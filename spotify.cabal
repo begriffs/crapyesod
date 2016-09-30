@@ -28,6 +28,7 @@ executable spotify
                      , http-conduit
                      , spotify
                      , yesod
+                     , string-conversions
   default-language:    Haskell2010
   default-extensions:  TypeFamilies, QuasiQuotes, MultiParamTypeClasses, TemplateHaskell, OverloadedStrings
 
